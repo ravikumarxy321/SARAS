@@ -12,7 +12,7 @@
 [![Sarvam AI](https://img.shields.io/badge/Sarvam_AI-sarvam--m-FF6B35?style=for-the-badge)](https://sarvam.ai)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-SARAS is a multilingual AI-powered robot that combines real-time face tracking, voice control, and a conversational chatbot — all accessible from a browser dashboard over HTTPS.
+**SARAS is a multilingual AI-powered robot** that combines real-time face tracking, voice control, and a conversational chatbot — all accessible from a browser dashboard over HTTPS.
 
 </div>
 
@@ -20,12 +20,14 @@ SARAS is a multilingual AI-powered robot that combines real-time face tracking, 
 
 ## ✨ Features
 
-- 🎙️ **Multilingual Voice Control** — Speak in English, Hindi, Hinglish, or 50+ languages
-- 🧠 **AI Chatbot** — Powered by Sarvam AI (`sarvam-m` model) with conversation memory
-- 👁️ **Face Tracking** — Follow any person or lock onto a registered face
-- 🎮 **Multiple Control Modes** — Keyboard, virtual joystick, D-pad, physical gamepad, or voice
-- 📡 **Real-time Dashboard** — WebSocket-powered browser UI with live camera feed
-- 🔒 **HTTPS by Default** — Self-signed SSL for secure microphone access on network
+| Feature | Description |
+|---|---|
+| 🎙️ **Multilingual Voice Control** | Speak in English, Hindi, Hinglish, or 50+ languages |
+| 🧠 **AI Chatbot** | Powered by Sarvam AI (`sarvam-m`) with conversation memory |
+| 👁️ **Face Tracking** | Follow any person or lock onto a registered face |
+| 🎮 **Multiple Control Modes** | Keyboard, virtual joystick, D-pad, physical gamepad, or voice |
+| 📡 **Real-time Dashboard** | WebSocket-powered browser UI with live camera feed |
+| 🔒 **HTTPS by Default** | Self-signed SSL for secure microphone access on network |
 
 ---
 
@@ -48,10 +50,10 @@ OpenCV    Sarvam AI
    (Motor Control)
 ```
 
-**Voice pipeline:**
+**Voice Pipeline:**
 ```
-Browser Web Speech API  →  Intent Detector  →  Robot Command  →  Arduino
-                                           └→  Chatbot Query  →  Sarvam AI  →  Browser TTS
+Browser Web Speech API → Intent Detector → Robot Command → Arduino
+                                      └→ Chatbot Query → Sarvam AI → Browser TTS
 ```
 
 ---
@@ -86,7 +88,7 @@ saras/
 ├── cert.pem                             # SSL certificate (auto-generated)
 ├── key.pem                              # SSL private key (auto-generated)
 ├── haarcascade_frontalface_default.xml  # Face detection cascade
-├── robot.ino                                # Arduino sketch (motor + servo + ultrasonic)
+├── robot.ino                            # Arduino sketch (motor + servo + ultrasonic)
 ├── dlib-19.22.99-cp310-cp310-win_amd64.whl  # dlib wheel for Windows
 ├── saved_faces/                         # Registered face histograms (.pkl)
 ├── templates/
@@ -115,40 +117,39 @@ saras/
 
 ---
 
-### L298N Motor Driver — Pin Connections
+### L298N Motor Driver
 
 ```
-         ARDUINO                        L298N MODULE
-        ┌─────────┐                   ┌──────────────┐
-        │      D3 ├──── ENA ──────────┤ ENA          │
-        │      D5 ├──── IN1 ──────────┤ IN1          │
-        │      D6 ├──── IN2 ──────────┤ IN2          │
-        │      D7 ├──── IN3 ──────────┤ IN3          │
-        │      D8 ├──── IN4 ──────────┤ IN4          │
-        │     D11 ├──── ENB ──────────┤ ENB          │
-        │     GND ├──── GND ──────────┤ GND          │
-        └─────────┘                   │              │
-                                      │ OUT1 ─────── Motor A (+)
-                                      │ OUT2 ─────── Motor A (-)
-                                      │ OUT3 ─────── Motor B (+)
-                                      │ OUT4 ─────── Motor B (-)
-                                      │              │
-                          7-12V ──────┤ VCC (12V)    │
-                           GND ───────┤ GND          │
-                                      └──────────────┘
+      ARDUINO                        L298N MODULE
+     ┌─────────┐                   ┌──────────────┐
+     │      D3 ├──── ENA ──────────┤ ENA          │
+     │      D5 ├──── IN1 ──────────┤ IN1          │
+     │      D6 ├──── IN2 ──────────┤ IN2          │
+     │      D7 ├──── IN3 ──────────┤ IN3          │
+     │      D8 ├──── IN4 ──────────┤ IN4          │
+     │     D11 ├──── ENB ──────────┤ ENB          │
+     │     GND ├──── GND ──────────┤ GND          │
+     └─────────┘                   │              │
+                                   │ OUT1 ─────── Motor A (+)
+                                   │ OUT2 ─────── Motor A (-)
+                                   │ OUT3 ─────── Motor B (+)
+                                   │ OUT4 ─────── Motor B (-)
+                       7-12V ──────┤ VCC (12V)    │
+                        GND ───────┤ GND          │
+                                   └──────────────┘
 ```
 
 | Arduino Pin | L298N Pin | Description |
 |---|---|---|
-| `D3` (PWM) | `ENA` | Left motor speed control |
-| `D5` | `IN1` | Left motor direction A |
-| `D6` | `IN2` | Left motor direction B |
-| `D7` | `IN3` | Right motor direction A |
-| `D8` | `IN4` | Right motor direction B |
-| `D11` (PWM) | `ENB` | Right motor speed control |
-| `GND` | `GND` | Common ground |
+| D3 (PWM) | ENA | Left motor speed control |
+| D5 | IN1 | Left motor direction A |
+| D6 | IN2 | Left motor direction B |
+| D7 | IN3 | Right motor direction A |
+| D8 | IN4 | Right motor direction B |
+| D11 (PWM) | ENB | Right motor speed control |
+| GND | GND | Common ground |
 
-> ⚠️ **Important:** The L298N `VCC (12V)` pin connects to your **battery pack** (7–12V), NOT to Arduino's 5V. The onboard 5V regulator on the L298N can power the Arduino via its `5V` output pin.
+> ⚠️ **Important:** The L298N `VCC (12V)` pin connects to your battery pack (7–12V), **not** Arduino's 5V. The onboard 5V regulator on the L298N can power the Arduino via its 5V output pin.
 
 **Motor direction logic:**
 
@@ -160,78 +161,53 @@ saras/
 
 ---
 
-### HC-SR04 Ultrasonic Sensor — Pin Connections
+### HC-SR04 Ultrasonic Sensor
 
 ```
-         ARDUINO                     HC-SR04
-        ┌─────────┐               ┌──────────┐
-        │      5V ├───────────────┤ VCC      │
-        │     GND ├───────────────┤ GND      │
-        │      D2 ├───── TRIG ────┤ TRIG     │
-        │      D4 ├───── ECHO ────┤ ECHO     │
-        └─────────┘               └──────────┘
+      ARDUINO                     HC-SR04
+     ┌─────────┐                ┌──────────┐
+     │      5V ├───────────────┤ VCC      │
+     │     GND ├───────────────┤ GND      │
+     │      D2 ├───── TRIG ────┤ TRIG     │
+     │      D4 ├───── ECHO ────┤ ECHO     │
+     └─────────┘                └──────────┘
 ```
 
 | Arduino Pin | HC-SR04 Pin | Description |
 |---|---|---|
-| `5V` | `VCC` | Power supply |
-| `GND` | `GND` | Ground |
-| `D2` | `TRIG` | Trigger pulse output |
-| `D4` | `ECHO` | Echo input |
+| 5V | VCC | Power supply |
+| GND | GND | Ground |
+| D2 | TRIG | Trigger pulse output |
+| D4 | ECHO | Echo input |
 
-> The sensor checks distance every **100 ms**. If an obstacle is detected within **25 cm** (`STOP_CM`), the robot halts automatically and sends `STOP` over Serial. It sends `CLEAR` when the path is free again.
+> The sensor checks distance every 100 ms. If an obstacle is detected within **25 cm**, the robot halts automatically and sends `STOP` over Serial. It sends `CLEAR` when the path is free again.
 
 ---
 
-### Servo Motor — Pin Connections
+### Servo Motor
 
 ```
-         ARDUINO                      SERVO MOTOR
-        ┌─────────┐                ┌─────────────────┐
-        │      5V ├────────────────┤ Red   (Power)   │
-        │     GND ├────────────────┤ Brown (Ground)  │
-        │     D12 ├────────────────┤ Orange (Signal) │
-        └─────────┘                └─────────────────┘
+      ARDUINO                      SERVO MOTOR
+     ┌─────────┐                 ┌─────────────────┐
+     │      5V ├────────────────┤ Red   (Power)   │
+     │     GND ├────────────────┤ Brown (Ground)  │
+     │     D12 ├────────────────┤ Orange (Signal) │
+     └─────────┘                 └─────────────────┘
 ```
 
 | Arduino Pin | Servo Wire | Description |
 |---|---|---|
-| `5V` | Red | Power |
-| `GND` | Brown / Black | Ground |
-| `D12` | Orange / Yellow | PWM signal |
+| 5V | Red | Power |
+| GND | Brown / Black | Ground |
+| D12 | Orange / Yellow | PWM signal |
 
-> The servo is used to pan the camera left/right. It centers at **90°** on startup and moves in **10° steps** via serial commands `J` (left) and `L` (right).
-
----
-
-### Complete Wiring Overview
-
-```
-                        ┌─────────────────────────────────────┐
-                        │           ARDUINO UNO               │
-                        │                                     │
-   HC-SR04              │  D2 ──── TRIG                       │
-   ┌────────┐           │  D4 ──── ECHO                       │
-   │ VCC ───┼── 5V ─────┤                                     │
-   │ GND ───┼── GND ────┤  D3 ──── ENA  ──────────────────┐  │
-   │ TRIG ──┼── D2      │  D5 ──── IN1  ────────────────┐  │  │
-   │ ECHO ──┼── D4      │  D6 ──── IN2  ──────────────┐ │  │  │
-   └────────┘           │  D7 ──── IN3  ────────────┐ │ │  │  │
-                        │  D8 ──── IN4  ──────────┐ │ │ │  │  │
-   SERVO                │  D11 ─── ENB  ────────┐ │ │ │ │  │  │
-   ┌────────┐           │                       │ │ │ │ │  │  │
-   │ Red ───┼── 5V      │  D12 ─── Signal ──┐  │ │ │ │ │  │  │
-   │ Brown ─┼── GND     │                   │  │ │ │ │ │  │  │
-   │ Orange ┼── D12     └───────────────────┼──┼─┼─┼─┼─┼──┘  │
-   └────────┘                               │  │ │ │ │ │      │
-                                        Servo  └─┴─┴─┴─┴── L298N
-   BATTERY (7-12V) ─────────────────────────── VCC (L298N)
-   GND ─────────────────────────────────────── GND (L298N)
-```
+> The servo pans the camera left/right. It centers at **90°** on startup and moves in **10° steps** via serial commands `J` (left) and `L` (right).
 
 ---
 
 ### Arduino Serial Command Reference
+
+**Manual commands:**
 
 | Command | Action | Serial Response |
 |---|---|---|
@@ -247,7 +223,7 @@ saras/
 | `-` | Decrease motor speed (−25) | `SPEED:<value>` |
 | `Q` / `q` | Emergency stop | `OK:STOP` |
 
-**Auto-broadcast messages (sent by Arduino unprompted):**
+**Auto-broadcast messages** *(sent by Arduino unprompted):*
 
 | Message | Meaning |
 |---|---|
@@ -258,16 +234,6 @@ saras/
 
 ---
 
-### Upload the Sketch
-
-1. Open `robot.ino` in the [Arduino IDE](https://www.arduino.cc/en/software)
-2. Select your board: **Tools → Board → Arduino Uno**
-3. Select your port: **Tools → Port → COM\* (Windows) / /dev/ttyUSB0 (Linux)**
-4. Click **Upload** (→)
-5. Open **Serial Monitor** at **9600 baud** — you should see `READY`
-
----
-
 ## 🚀 Quick Start
 
 ### Prerequisites
@@ -275,7 +241,7 @@ saras/
 - Python 3.10
 - Arduino (flashed with motor control sketch)
 - USB Camera
-- [Sarvam AI API Key](https://dashboard.sarvam.ai/)
+- Sarvam AI API Key
 
 ---
 
@@ -292,7 +258,7 @@ Create a `.env` file in the project root:
 SARVAM_API_KEY=sk_xxxxxxxx_xxxxxxxxxxxxxxxxxx
 ```
 
-> Get your key from [dashboard.sarvam.ai](https://dashboard.sarvam.ai/)
+> Get your key from [dashboard.sarvam.ai](https://dashboard.sarvam.ai)
 
 ---
 
@@ -343,26 +309,10 @@ Find your serial port:
 python -c "import serial.tools.list_ports; [print(p.device, '|', p.description) for p in serial.tools.list_ports.comports()]"
 
 # Linux / Jetson
-ls /dev/tty*    # Look for /dev/ttyUSB0 or /dev/ttyACM0
+ls /dev/tty*   # Look for /dev/ttyUSB0 or /dev/ttyACM0
 ```
 
-> `app.py` auto-detects the port. Bluetooth ports are automatically skipped. No manual configuration needed.
-
-**Arduino serial command reference:**
-
-| Command | Action |
-|---|---|
-| `W` | Forward *(auto-blocked if obstacle ≤ 25 cm)* |
-| `S` | Backward |
-| `A` | Left |
-| `D` | Right |
-| `X` / `Q` | Stop |
-| `J` | Servo pan left |
-| `L` | Servo pan right |
-| `C` | Servo center |
-| `+` / `-` | Speed up / slow down |
-
-> See the **Hardware Wiring** section above for full serial protocol and auto-broadcast messages.
+> `app.py` auto-detects the port. Bluetooth ports are automatically skipped — no manual configuration needed.
 
 ---
 
@@ -389,20 +339,20 @@ Expected output:
   🤖 Robot Control Server  —  Starting...
 ============================================================
 [CHATBOT] Sarvam chatbot module loaded ✓
-[SERIAL] Found (COM11): USB-SERIAL CH340
-[SERIAL] Arduino on COM11 — REAL mode.
-[HAAR] Using cascade: .../haarcascade_frontalface_default.xml
-[TRACK] face_recognition available ✓
-[SSL] ✓ Certificate generated for localhost + 192.168.x.x
-[SERVER] Running at https://localhost:5000
-[SERVER] Network:  https://192.168.x.x:5000
+[SERIAL]  Found (COM11): USB-SERIAL CH340
+[SERIAL]  Arduino on COM11 — REAL mode.
+[HAAR]    Using cascade: .../haarcascade_frontalface_default.xml
+[TRACK]   face_recognition available ✓
+[SSL]     ✓ Certificate generated for localhost + 192.168.x.x
+[SERVER]  Running at https://localhost:5000
+[SERVER]  Network:  https://192.168.x.x:5000
 ```
 
 Open in browser:
 
 ```
-https://localhost:5000          ← same machine
-https://<your-ip>:5000          ← phone / laptop on same WiFi
+https://localhost:5000       ← same machine
+https://<your-ip>:5000       ← phone / laptop on same WiFi
 ```
 
 > ⚠️ The browser will show a **"Not Secure"** warning because the SSL certificate is self-signed. Click **Advanced → Proceed**. This is expected and required for microphone access over the network.
@@ -441,26 +391,28 @@ Click the 🎤 mic button and speak:
 | "Stop" | "Ruko" | Stop |
 | "Follow" | "Follow karo" | Start face following |
 | "Track" | "Track karo" | Start smart tracking |
-| *Any question* | *Koi bhi sawaal* | SARAS replies via AI |
+| Any question | Koi bhi sawaal | SARAS replies via AI |
 
 ---
 
 ## 👁️ Face Tracking
 
 ### Follow Mode *(any person)*
-1. Click **FOLLOW PERSON**
-2. Camera activates automatically
-3. SARAS follows the largest detected face
-4. Click again to stop
+
+1. Click **FOLLOW PERSON** — camera activates automatically
+2. SARAS follows the largest detected face
+3. Click again to stop
 
 ### Smart Tracking *(specific person)*
+
 1. Stand in front of the camera
-2. Click **REGISTER TARGET** → enter your name → **✓ SAVE**
+2. Click **REGISTER TARGET** → enter your name → ✓ **SAVE**
 3. Face is saved to `saved_faces/yourname.pkl`
 4. Click **START TRACKING** — SARAS tracks only you
 5. Click **STOP TRACKING** to end
 
 ### Loading a Previously Saved Face
+
 1. Open the **SAVED FACES** panel
 2. Click **LOAD** next to a name
 3. Click **START TRACKING** — no re-registration needed
@@ -477,7 +429,7 @@ Click the 🎤 mic button and speak:
 
 ## 🪷 SARAS Chatbot
 
-SARAS uses [Sarvam AI](https://sarvam.ai) (`sarvam-m`) with automatic language detection and 10-message conversation memory.
+SARAS uses **Sarvam AI (`sarvam-m`)** with automatic language detection and **10-message conversation memory**.
 
 **Supported languages:** English, Hindi (Devanagari), Hinglish (Roman script), Arabic, Chinese, Japanese, Korean, Tamil, Telugu, Bengali, and 40+ more.
 
@@ -500,21 +452,21 @@ SARAS: [replies in Hinglish]
 
 | Endpoint | Method | Description |
 |---|---|---|
-| `/` | `GET` | Dashboard UI |
-| `/api/command` | `POST` | Send movement command |
-| `/api/state` | `GET` | Get robot state |
-| `/api/log` | `GET` | Command history |
-| `/api/camera` | `POST` | Start / stop camera |
-| `/api/face_detection` | `POST` | Toggle face following |
-| `/api/register_target` | `POST` | Register face with name |
-| `/api/smart_track` | `POST` | Toggle smart tracking |
-| `/api/faces` | `GET` | List saved faces |
-| `/api/load_face` | `POST` | Load saved face |
-| `/api/delete_face` | `POST` | Delete saved face |
-| `/api/intent` | `POST` | Detect voice intent |
-| `/api/chat` | `POST` | Chat with SARAS |
-| `/api/chat/clear` | `POST` | Clear chat memory |
-| `/video_feed` | `GET` | MJPEG live camera stream |
+| `/` | GET | Dashboard UI |
+| `/api/command` | POST | Send movement command |
+| `/api/state` | GET | Get robot state |
+| `/api/log` | GET | Command history |
+| `/api/camera` | POST | Start / stop camera |
+| `/api/face_detection` | POST | Toggle face following |
+| `/api/register_target` | POST | Register face with name |
+| `/api/smart_track` | POST | Toggle smart tracking |
+| `/api/faces` | GET | List saved faces |
+| `/api/load_face` | POST | Load saved face |
+| `/api/delete_face` | POST | Delete saved face |
+| `/api/intent` | POST | Detect voice intent |
+| `/api/chat` | POST | Chat with SARAS |
+| `/api/chat/clear` | POST | Clear chat memory |
+| `/video_feed` | GET | MJPEG live camera stream |
 
 ---
 
@@ -522,17 +474,17 @@ SARAS: [replies in Hinglish]
 
 | Problem | Solution |
 |---|---|
-| `SARVAM_API_KEY not set` | Create `.env` with your key |
+| `SARVAM_API_KEY` not set | Create `.env` with your key |
 | Serial in MOCK mode | Check Arduino connection and port detection |
 | Bluetooth port detected | Auto-skipped; check Device Manager if issue persists |
 | Camera not found | Run camera test command, check USB connection |
 | Camera timeout | USB cameras may take 5–10 s to open — wait |
 | Voice not working | Use `https://`, not `http://`; allow mic in browser |
 | Browser security warning | Click **Advanced → Proceed** (self-signed cert) |
-| `API error 404` | Verify `SARVAM_API_KEY` in `.env` |
+| API error 404 | Verify `SARVAM_API_KEY` in `.env` |
 | `<think>` tags in reply | Fixed in `chatbot_module.py` — update to latest |
 | dlib install error (Windows) | Use the prebuilt `.whl` — see Step 2 |
-| `numpy` compile error | Pin to `numpy==1.26.4` for Python 3.10 |
+| numpy compile error | Pin to `numpy==1.26.4` for Python 3.10 |
 | Module not found | Run `pip install -r requirements.txt` |
 
 ---
@@ -542,22 +494,22 @@ SARAS: [replies in Hinglish]
 Pull requests are welcome! For major changes, please open an issue first to discuss what you'd like to change.
 
 1. Fork the repository
-2. Create your branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+2. Create your branch: `git checkout -b feature/amazing-feature`
+3. Commit your changes: `git commit -m 'Add amazing feature'`
+4. Push to the branch: `git push origin feature/amazing-feature`
 5. Open a Pull Request
 
 ---
 
 ## 📄 License
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 
 ---
 
 <div align="center">
 
-*SARAS — Saraswati AI Robot Autonomous System*
+**SARAS — Saraswati AI Robot Autonomous System**
 
 *Built with Flask · OpenCV · Sarvam AI · Arduino · dlib*
 

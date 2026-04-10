@@ -1,0 +1,41 @@
+# SARAS — Python Requirements
+# ═══════════════════════════════════════════════════════════════════
+#
+# Install order:
+#   Step 1: python -m pip install dlib-19.22.99-cp310-cp310-win_amd64.whl
+#   Step 2: python -m pip install -r requirements.txt
+#
+# Ubuntu/Jetson:
+#   pip3 install -r requirements.txt --break-system-packages
+# ═══════════════════════════════════════════════════════════════════
+
+# Web Server
+flask==2.3.3
+flask-socketio==5.3.6
+Werkzeug==2.3.7
+eventlet==0.33.3
+
+# Serial
+pyserial==3.5
+
+# Chatbot
+requests==2.32.3
+python-dotenv==1.0.1
+urllib3==2.2.3
+
+# Computer Vision
+opencv-python==4.9.0.80
+numpy==1.26.4
+
+# Audio
+pygame==2.6.1
+
+# HTTPS / SSL certificate generation
+cryptography
+
+# Face Recognition
+# Windows: install dlib wheel first →
+#   python -m pip install dlib-19.22.99-cp310-cp310-win_amd64.whl
+# Ubuntu/Jetson: pip3 install dlib
+#dlib==19.22.99
+face-recognition

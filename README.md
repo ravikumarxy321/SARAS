@@ -261,43 +261,66 @@ SARVAM_API_KEY=sk_xxxxxxxx_xxxxxxxxxxxxxxxxxx
 
 ### Step 2 — Install Dependencies
 
-<details>
-<summary><b>🪟 Windows (Python 3.10 x64)</b></summary>
-Step 1 — Install dlib (do this first, mandatory)
-powershellpip install https://github.com/z-mahmud22/Dlib_Windows_Python3.x/raw/main/dlib-19.22.99-cp310-cp310-win_amd64.whl
+### 2.1 🪟 Windows (Python 3.10 x64)
 
-For other Python versions download matching wheel from:
-👉 https://github.com/z-mahmud22/Dlib_Windows_Python3.x
+**Step 1 — Install dlib (do this first, mandatory)**
 
-Step 2 — Install remaining packages
-powershellpip install -r requirements.txt
-Step 3 — Verify
-powershellpython -c "import flask, flask_socketio, serial, cv2, requests, dotenv, numpy, urllib3, dlib, face_recognition; print('All OK ✓')"
-</details>
+```powershell
+pip install https://github.com/z-mahmud22/Dlib_Windows_Python3.x/raw/main/dlib-19.22.99-cp310-cp310-win_amd64.whl
+```
 
-<details>
-<summary><b>🐧 Linux / Ubuntu / Jetson Nano</b></summary>
-Step 1 — Install system dependencies
-bashsudo apt update
+> For other Python versions download matching wheel from:
+> 👉 https://github.com/z-mahmud22/Dlib_Windows_Python3.x
+
+**Step 2 — Install remaining packages**
+
+```powershell
+pip install -r requirements.txt
+```
+
+**Step 3 — Verify**
+
+```powershell
+python -c "import flask, flask_socketio, serial, cv2, requests, dotenv, numpy, urllib3, dlib, face_recognition; print('All OK ✓')"
+```
+
+---
+
+### 2.2 🐧 Linux / Ubuntu / Jetson Nano
+
+**Step 1 — Install system dependencies**
+
+```bash
+sudo apt update
 sudo apt install cmake build-essential libopenblas-dev liblapack-dev libx11-dev python3-pip libopencv-dev python3-opencv -y
 sudo usermod -aG dialout $USER
+```
 
-⚠️ Log out and back in after usermod for serial port access.
+> ⚠️ Log out and back in after `usermod` for serial port access.
 
-Step 2 — Uncomment dlib in requirements.txt
-Open requirements.txt and change this:
-# dlib
+**Step 2 — Uncomment dlib in requirements.txt**
+
+Open `requirements.txt` and change this:
+```bash
+#dlib
+```
 To this:
+```bash
 dlib
-Step 3 — Install all packages
-bashpip3 install -r requirements.txt --break-system-packages
+```
+**Step 3 — Install all packages**
 
-dlib compiles from source automatically — takes 5-10 minutes, this is normal.
+```bash
+pip3 install -r requirements.txt --break-system-packages
+```
 
-Step 4 — Verify
-bashpython3 -c "import flask, flask_socketio, serial, cv2, requests, dotenv, numpy, urllib3, dlib, face_recognition; print('All OK ✓')"
-</details>
----
+> dlib compiles from source automatically — takes 5-10 minutes, this is normal.
+
+**Step 4 — Verify**
+
+```bash
+python3 -c "import flask, flask_socketio, serial, cv2, requests, dotenv, numpy, urllib3, dlib, face_recognition; print('All OK ✓')"
+```
 
 ### Step 3 — Connect Arduino
 

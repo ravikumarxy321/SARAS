@@ -284,7 +284,7 @@ pip install -r requirements.txt
 **Step 3 — Verify**
 
 ```powershell
-python -c "import flask, flask_socketio, serial, cv2, requests, dotenv, numpy, urllib3, dlib, face_recognition; print('All OK ✓')"
+python -c "import flask, flask_socketio, serial, cv2, requests, dotenv, numpy, urllib3, face_recognition; print('All OK ✓')"
 ```
 
 ---

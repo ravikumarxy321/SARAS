@@ -84,9 +84,6 @@ saras/
 ├── chatbot_module.py                    # Sarvam LLM + intent detector
 ├── Bot_prompt.txt                       # SARAS personality & system prompt
 ├── requirements.txt                     # Python dependencies
-├── .env                                 # API keys (create manually)
-├── cert.pem                             # SSL certificate (auto-generated)
-├── key.pem                              # SSL private key (auto-generated)
 ├── haarcascade_frontalface_default.xml  # Face detection cascade
 ├── robot.ino                            # Arduino sketch (motor + servo + ultrasonic)
 ├── dlib-19.22.99-cp310-cp310-win_amd64.whl  # dlib wheel for Windows
@@ -265,39 +262,41 @@ SARVAM_API_KEY=sk_xxxxxxxx_xxxxxxxxxxxxxxxxxx
 ### Step 2 — Install Dependencies
 
 <details>
-<summary><b>🪟 Windows</b></summary>
+<summary><b>🪟 Windows (Python 3.10 x64)</b></summary>
+Step 1 — Install dlib (do this first, mandatory)
+powershellpip install https://github.com/z-mahmud22/Dlib_Windows_Python3.x/raw/main/dlib-19.22.99-cp310-cp310-win_amd64.whl
 
-```powershell
-# 1. Rename and install dlib prebuilt wheel (no compilation needed)
-Rename-Item dlib-19_22_99-cp310-cp310-win_amd64.whl dlib-19.22.99-cp310-cp310-win_amd64.whl
-python -m pip install dlib-19.22.99-cp310-cp310-win_amd64.whl
+For other Python versions download matching wheel from:
+👉 https://github.com/z-mahmud22/Dlib_Windows_Python3.x
 
-# 2. Install remaining packages
-python -m pip install -r requirements.txt
-
-# 3. Verify
-python -c "import flask, flask_socketio, serial, cv2, requests, dotenv, numpy, urllib3, dlib, face_recognition; print('All OK ✓')"
-```
-
+Step 2 — Install remaining packages
+powershellpip install -r requirements.txt
+Step 3 — Verify
+powershellpython -c "import flask, flask_socketio, serial, cv2, requests, dotenv, numpy, urllib3, dlib, face_recognition; print('All OK ✓')"
 </details>
 
 <details>
-<summary><b>🐧 Ubuntu / Jetson Nano</b></summary>
-
-```bash
-# System dependencies
-sudo apt update
-sudo apt install python3-pip libopencv-dev python3-opencv cmake -y
-
-# Serial port permission (log out and back in after this)
+<summary><b>🐧 Linux / Ubuntu / Jetson Nano</b></summary>
+Step 1 — Install system dependencies
+bashsudo apt update
+sudo apt install cmake build-essential libopenblas-dev liblapack-dev libx11-dev python3-pip libopencv-dev python3-opencv -y
 sudo usermod -aG dialout $USER
 
-# Install packages (dlib compiles from source automatically)
-pip3 install -r requirements.txt --break-system-packages
-```
+⚠️ Log out and back in after usermod for serial port access.
 
+Step 2 — Uncomment dlib in requirements.txt
+Open requirements.txt and change this:
+# dlib
+To this:
+dlib
+Step 3 — Install all packages
+bashpip3 install -r requirements.txt --break-system-packages
+
+dlib compiles from source automatically — takes 5-10 minutes, this is normal.
+
+Step 4 — Verify
+bashpython3 -c "import flask, flask_socketio, serial, cv2, requests, dotenv, numpy, urllib3, dlib, face_recognition; print('All OK ✓')"
 </details>
-
 ---
 
 ### Step 3 — Connect Arduino

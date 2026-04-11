@@ -267,7 +267,11 @@ SARVAM_API_KEY=sk_xxxxxxxx_xxxxxxxxxxxxxxxxxx
 ### 2.1 🪟 Windows (Python 3.10 x64)
 
 **Step 1 — Install dlib (do this first, mandatory)**
+```powershell
+python -m pip install dlib-19.22.99-cp310-cp310-win_amd64.whl
+```
 
+OR 
 ```powershell
 pip install https://github.com/z-mahmud22/Dlib_Windows_Python3.x/raw/main/dlib-19.22.99-cp310-cp310-win_amd64.whl
 ```

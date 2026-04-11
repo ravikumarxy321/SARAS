@@ -248,14 +248,17 @@ saras/
 git clone https://github.com/ravikumarxy321/SARAS.git
 cd saras
 ```
+Create a `.env` file by copying .env.example in the project root:
+```bash
+cp .env.example .env
+```
+Replace with your original SARVAM_API_KEY
 
-Create a `.env` file in the project root:
-
+> Get your key from [dashboard.sarvam.ai](https://dashboard.sarvam.ai)
 ```env
 SARVAM_API_KEY=sk_xxxxxxxx_xxxxxxxxxxxxxxxxxx
 ```
 
-> Get your key from [dashboard.sarvam.ai](https://dashboard.sarvam.ai)
 
 ---
 

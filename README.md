@@ -322,21 +322,30 @@ pip3 install -r requirements.txt --break-system-packages
 python3 -c "import flask, flask_socketio, serial, cv2, requests, dotenv, numpy, urllib3, dlib, face_recognition; print('All OK ✓')"
 ```
 
-### Step 3 — Connect Arduino
+## 🔌 Arduino Setup
 
-Find your serial port:
+1. Install [Arduino IDE](https://www.arduino.cc/en/software)
+2. Open `robot.ino` and click **Upload**
+3. Connect Arduino via USB
+4. Select **Tools → Board → Arduino Uno**
+5. Select **Tools → Port → COM3** (Windows) or **/dev/ttyUSB0** (Linux)
+6. Open Serial Monitor — you should see `READY`
+
+> ⚠️ Close Serial Monitor before running `app.py`
+
+---
+
+### Step 3 — Connect Arduino & Find Port
 
 ```bash
 # Windows
 python -c "import serial.tools.list_ports; [print(p.device, '|', p.description) for p in serial.tools.list_ports.comports()]"
 
 # Linux / Jetson
-ls /dev/tty*   # Look for /dev/ttyUSB0 or /dev/ttyACM0
+ls /dev/tty*
 ```
 
-> `app.py` auto-detects the port. Bluetooth ports are automatically skipped — no manual configuration needed.
-
----
+> `app.py` auto-detects the port — no manual configuration needed.
 
 ### Step 4 — Verify Camera
 
